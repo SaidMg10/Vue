@@ -20,14 +20,6 @@
 				<span class="material-icons">description</span>
 				<span class="text">Acerca de: </span>
 			</router-link>
-			<router-link to="/team" class="button">
-				<span class="material-icons">group</span>
-				<span class="text">Equipo</span>
-			</router-link>
-			<router-link to="/contact" class="button">
-				<span class="material-icons">email</span>
-				<span class="text">Contáctanos</span>
-			</router-link>
 		</div>
 
 		<div class="flex"></div>

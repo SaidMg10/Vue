@@ -48,16 +48,8 @@ export default {
         usuario : this.email,
         password : this.password,                    
       };
-      axios.post('https://api.solodata.es/auth',json)
-      .then(data=>{
-        if (data.data.status == "ok") {
-          console.log("Todo correcto")
-          this.$router.push("/dashboard");
-        }else
-        {
-          this.error = true;
-        };
-      })
+      console.log("Todo correcto")
+      this.$router.push("/dashboard");        
     }
   }
 };

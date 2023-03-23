@@ -1,11 +1,25 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
+import ListarUser from "../components/ListarUser.vue";
+import CrearUser from "../components/CrearUser.vue";
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path:"/listar",
+    name:"listar",
+    component:ListarUser,
+
+  },
+  {
+    path:"/crear",
+    name:"crear",
+    component:CrearUser,
   },
   {
     path: '/about',
