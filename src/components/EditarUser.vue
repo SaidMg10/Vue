@@ -1,9 +1,9 @@
 <template>
     <div class="container">
       <div class="card">
-        <div class="card-header">Agregar Usuario</div>
+        <div class="card-header">Editar Usuario</div>
         <div class="card-body">
-          <form v-on:submit.prevent="agregarRegistro">
+          <form v-on:submit.prevent="actualizarRegistro">
             <div class="form-group">
               <label for="">Nombre:</label>
               <input
@@ -31,7 +31,7 @@
                 placeholder="Password"
               />
               <small id="helpId" class="form-text" text-muted
-                >Ingresa la contraseña</small
+                >Ingresa la nueva password</small
               >
             </div>
             <div class="form-group">
@@ -39,16 +39,18 @@
               <input
                 type="text"
                 class="form-control"
-                name="fecha"
-                id="fecha"
+                name="fechaRegistro"
+                id="fechaRegistro"
                 v-model="Usuario.fechaRegistro"
                 aria-describedby="helpId"
-                placeholder="fecha"
+                placeholder="fechaRegistro"
               />
               <small id="helpId" class="form-text" text-muted
-                >Ingresa la fecha de registro</small
+                >Ingresa la fecha del cambio</small
               >
             </div>
+
+
             <div class="form-group">
               <label for="">No. Empleado:</label>
               <input
@@ -79,14 +81,15 @@
                 >Ingresa el Rol</small
               >
             </div>
-            
-  
             <br />
   
             <div class="btn-group" role="group">
-              |<button type="submit" class="btn btn-success">Agregar</button>|
-              |<router-link :to="{ name: 'listar' }" class="btn btn-danger"
+              |<button type="submit" class="btn btn-danger">Modificar</button>|
+              <!-- |<router-link :to="{ name: 'listar' }" class="btn btn-danger"
                 >Cancelar</router-link
+              >| -->
+              <button type="button" v-on:click="listar" class="btn btn-danger">
+                Cancelar</button
               >|
             </div>
           </form>
@@ -95,7 +98,7 @@
     </div>
   </template>
   
-  <script>
+<script>
   import axios from "axios";
   export default {
     data() {
@@ -103,26 +106,40 @@
         Usuario: {},
       };
     },
-  
+    created: function () {
+      this.obtenerInformacionID();
+    },
     methods: {
-      agregarRegistro() {
-        console.log(this.Usuario);
-  
-        var datosEnviar = {
+      obtenerInformacionID() {
+        axios
+          .get("https://localhost:7241/Usuarios/" + this.$route.params.id)
+          .then((result) => {
+            console.log(result.data);
+            this.Usuario = result.data;
+          });
+      },
+      listar() {
+        this.$router.push("/listar");
+      },
+      actualizarRegistro() {
+        let datosEnviar = {
           user: this.Usuario.user,
           password: this.Usuario.password,
           fechaRegistro: this.Usuario.fechaRegistro,
           fkEmpleado: this.Usuario.fkEmpleado,
           fkRol: this.Usuario.fkRol
         };
-  
+
         axios
-          .post("https://localhost:7241/Usuarios", datosEnviar)
+          .put(
+            "https://localhost:7241/Usuarios/" + this.$route.params.id,
+            datosEnviar
+          )
           .then((result) => {
             console.log(result);
-            window.location.href = "Listar";
+            this.$router.push("/listar");
           });
       },
     },
   };
-  </script>
+</script>

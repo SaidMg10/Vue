@@ -12,11 +12,11 @@
 
 		<h3>Menu</h3>
 		<div class="menu">
-			<router-link to="/" class="button">
+			<router-link to="/listar" class="button">
 				<span class="material-icons">home</span>
-				<span class="text">Inicio</span>
+				<span class="text">CRUD Usuarios</span>
 			</router-link>
-			<router-link to="/about" class="button">
+			<router-link to="/listarcli" class="button">
 				<span class="material-icons">description</span>
 				<span class="text">Acerca de: </span>
 			</router-link>

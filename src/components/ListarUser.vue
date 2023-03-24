@@ -1,4 +1,8 @@
 <template>
+    <router-link to="/listar">Listar</router-link> |
+    <router-link to="/Dashboard">Dashboard</router-link> |
+    <router-link to="/crear">Crear</router-link>
+
     <div>
       <div class="card">
         <div class="card-header">Usuarios</div>
@@ -16,7 +20,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="Usuario in Usuarios" :key="Usuario.pkusuario">
+              <tr v-for="Usuario in Usuarios" :key="Usuario.pkUsuario">
                 <td>{{ Usuario.pkUsuario }}</td>
                 <td>{{ Usuario.user }}</td>
                 <td>{{ Usuario.password }}</td>
@@ -24,10 +28,23 @@
 
                 <td>  
                   <div class="btn-group" role="label" aria-label="">
+                  |
+                  <!-- <router-link
+                    :to="{ name: 'editar', params: { id: Usuario.pkUsuario } }"
+                    class="btn btn-info"
+                    >Editar</router-link
+                  > -->
+                  |<button
+                    type="button"
+                    v-on:click="editar(Usuario.pkUsuario)"
+                    class="btn btn-danger"
+                  >
+                    Editar</button
+                  >| 
                     <!-- |<router-link :to="{name:'editar',param:{id:Usuario.id}}" class="btn btn-info">Editar</router-link> | -->
                     |<button
                       type="button"
-                      v-on:click="borrarUsuario(Usuario.id)"
+                      v-on:click="borrarUsuario(Usuario.pkUsuario)"
                       class="btn btn-danger"
                     >
                       Eliminar</button
@@ -59,12 +76,15 @@
           this.Usuarios = result.data.result;
         });
       },
+
+      editar(id) {
+      console.log(id);
+      this.$router.push("/editar/" + id);
+    },
   
       borrarUsuario(id) {
         console.log(id);
-  
-        axios.delete("https://localhost:8080/Usuarios/borrar/" + id);
-  
+        axios.delete("https://localhost:7241/Usuarios/" + id) 
         window.location.href = "Listar";
       },
     },

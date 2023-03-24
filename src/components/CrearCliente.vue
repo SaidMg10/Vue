@@ -1,7 +1,7 @@
 <template>
     <div class="container">
       <div class="card">
-        <div class="card-header">Agregar Usuario</div>
+        <div class="card-header">Agregar Cliente</div>
         <div class="card-body">
           <form v-on:submit.prevent="agregarRegistro">
             <div class="form-group">
@@ -10,70 +10,70 @@
                 type="text"
                 class="form-control"
                 name="nombre"
-                v-model="Usuario.user"
+                v-model="Cliente.nombre"
                 aria-describedby="helpId"
                 id="nombre"
                 placeholder="Nombre"
               />
               <small id="helpId" class="form-text" text-muted
-                >Ingresa el nombre del Usuario</small
+                >Ingresa el nombre del Cliente</small
               >
             </div>
             <div class="form-group">
-              <label for="">Password:</label>
+              <label for="">Apellido:</label>
               <input
                 type="text"
                 class="form-control"
-                name="password"
-                id="password"
-                v-model="Usuario.password"
+                name="apellido"
+                id="apellido"
+                v-model="Cliente.apellido"
                 aria-describedby="helpId"
-                placeholder="Password"
+                placeholder="apellido"
               />
               <small id="helpId" class="form-text" text-muted
                 >Ingresa la contraseña</small
               >
             </div>
             <div class="form-group">
-              <label for="">FechaRegistro:</label>
+              <label for="">telefono:</label>
               <input
                 type="text"
                 class="form-control"
-                name="fecha"
-                id="fecha"
-                v-model="Usuario.fechaRegistro"
+                name="telefono"
+                id="telefono"
+                v-model="Cliente.telefono"
                 aria-describedby="helpId"
-                placeholder="fecha"
+                placeholder="telefono"
               />
               <small id="helpId" class="form-text" text-muted
                 >Ingresa la fecha de registro</small
               >
             </div>
             <div class="form-group">
-              <label for="">No. Empleado:</label>
+              <label for="">Email:</label>
               <input
                 type="text"
                 class="form-control"
-                name="nO.Emp"
-                id="nO.Emp"
-                v-model="Usuario.fkEmpleado"
+                name="email"
+                id="email"
+                v-model="Cliente.email"
                 aria-describedby="helpId"
-                placeholder="Numero de empleado"
+                placeholder="email"
               />             
               <small id="helpId" class="form-text" text-muted
                 >Ingresa el número de Empleado</small
               >
             </div>
             <div class="form-group">
-              <label for="">Rol:</label>
+              <label for="">Dirección:</label>
               <input
                 type="text"
                 class="form-control"
-                name="rol"
-                id="rol"
-                v-model="Usuario.fkRol"
+                name="direccion"
+                id="direccion"
+                v-model="Cliente.direccion"
                 aria-describedby="helpId"
-                placeholder="Rol"
+                placeholder="direccion"
               />             
               <small id="helpId" class="form-text" text-muted
                 >Ingresa el Rol</small
@@ -85,7 +85,7 @@
   
             <div class="btn-group" role="group">
               |<button type="submit" class="btn btn-success">Agregar</button>|
-              |<router-link :to="{ name: 'listar' }" class="btn btn-danger"
+              |<router-link :to="{ name: 'listarcli' }" class="btn btn-danger"
                 >Cancelar</router-link
               >|
             </div>
@@ -95,34 +95,36 @@
     </div>
   </template>
   
-  <script>
+  <script> 
+  
   import axios from "axios";
   export default {
     data() {
       return {
-        Usuario: {},
+        Cliente: {},
       };
     },
   
     methods: {
       agregarRegistro() {
-        console.log(this.Usuario);
+        console.log(this.Cliente);
   
         var datosEnviar = {
-          user: this.Usuario.user,
-          password: this.Usuario.password,
-          fechaRegistro: this.Usuario.fechaRegistro,
-          fkEmpleado: this.Usuario.fkEmpleado,
-          fkRol: this.Usuario.fkRol
+          nombre: this.Cliente.nombre,
+          apellido: this.Cliente.apellido,
+          telefono: this.Cliente.telefono,
+          email: this.Cliente.email,
+          direccion: this.Cliente.direccion
         };
   
         axios
-          .post("https://localhost:7241/Usuarios", datosEnviar)
+          .post("https://localhost:7241/Clientes", datosEnviar)
           .then((result) => {
             console.log(result);
-            window.location.href = "Listar";
+            window.location.href = "ListarCli";
           });
       },
     },
-  };
-  </script>
+  };</script>
+ 
+  

@@ -3,10 +3,6 @@ import { RouterView } from 'vue-router';
 </script>
 <template>
   <header>
-  <nav>
-    <RouterLink to="/listar">listar</RouterLink>
-    <router-link to="/crear">crear</router-link>
-  </nav>
   </header>
   <RouterView/>
 </template>
