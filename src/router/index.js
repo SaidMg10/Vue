@@ -6,7 +6,9 @@ import EditarUser from "../components/EditarUser.vue"
 import ListarCliente from "../components/ListarCliente.vue"
 import CrearCliente from "../components/CrearCliente.vue"
 import EditarCliente from "../components/EditarCliente.vue"
-
+import ListarDepartamentos from "../components/ListarDepartamentos.vue"
+import CrearDepartamento from "../components/CrearDepartamento.vue"
+import EditarDepartamento from "../components/EditarDepartamento.vue"
 
 const routes = [
   {
@@ -44,6 +46,21 @@ const routes = [
     path:"/editarcliente/:id",
     name: "editarcliente",
     component:EditarCliente,
+  },
+  {
+    path:"/listardep",
+    name: "listardep",
+    component:ListarDepartamentos,
+  },
+  {
+    path:"/creardep",
+    name:"creardep",
+    component:CrearDepartamento
+  },
+  {
+    path:"/editardep/:id",
+    name:"editardep",
+    component:EditarDepartamento,
   },
   {
     path: '/about',

@@ -88,7 +88,7 @@
               <!-- |<router-link :to="{ name: 'listar' }" class="btn btn-danger"
                 >Cancelar</router-link
               >| -->
-              <button type="button" v-on:click="listarcli" class="btn btn-danger">
+              <button type="button" v-on:click="listar" class="btn btn-danger">
                 Cancelar</button
               >|
             </div>
